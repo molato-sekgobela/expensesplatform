@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from django.contrib import messages
+from .credentials import EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS, DEFAULT_FROM_EMAIL, EMAIL_PORT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -134,9 +135,9 @@ MESSAGE_TAGS = {
 
 #email stuff
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'molato.sekgobela@gmail.com'
-EMAIL_HOST_PASSWORD = 'hmmy hkiw lguc yfrx'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'molato.sekgobela@gmail.com'
-EMAIL_PORT = 587
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = EMAIL_USE_TLS
+DEFAULT_FROM_EMAIL = DEFAULT_FROM_EMAIL
+EMAIL_PORT = EMAIL_PORT
