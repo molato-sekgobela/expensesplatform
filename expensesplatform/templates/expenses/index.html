@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 
@@ -15,9 +15,65 @@
       </nav>
     </div>
     <div class="col-md-2">
-        <a href="{% url 'add-expense' %}" class="btn btn-primary">Add Expense</a>
+        <a href="{% url 'add-expense' %}" id="searchField" class="btn btn-primary">Add Expense</a>
     </div>
 </div>
+
+<div class="container">
+  {% include 'partials/_messages.html' %}
+  <div class="row">
+    <div class="col-md-8">
+    <div class="fomr-group">
+      <input type="text" class="form-control" placeholder="Search Expenses">
+    </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+   <table class="table table-striped">
+       <thead>
+           <tr>
+               <th>Amount ({{preferences.currency}})</th>
+               <th>Date</th>
+               <th>Category</th>
+               <th>Description</th>
+               <th>Actions</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for expense in page_obj %}
+           <tr>
+               <td>{{expense.amount}}</td>
+               <td>{{expense.date}}</td>
+               <td>{{expense.category}}</td>
+               <td>{{expense.description}}</td>
+               <td>
+                   <a href="{% url 'edit-expense' expense.id %}" class="btn btn-primary btn-sm">Edit</a>
+                   <a href="{% url 'delete-expense' expense.id   %}" class="btn btn-danger btn-sm">Delete</a>
+               </td>
+           </tr>
+           {% endfor %}
+       </tbody>
+    </table>
+    <div class="pagination">
+        <span class="step-links small">
+            {% if page_obj.has_previous %}
+                <a class="btn btn-primary btn-sm" href="?page=1">&laquo; first</a>
+                <a class="btn btn-primary btn-sm" href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-primary btn-sm" href="?page={{ page_obj.next_page_number }}">next</a>
+                <a class="btn btn-primary btn-sm" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+
+    </div>
 </div>
-{% include 'partials/_messages.html' %}
+
 {% endblock %}
