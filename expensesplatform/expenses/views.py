@@ -20,7 +20,7 @@ def search_expenses(request):
         return JsonResponse(list(data), safe=False)
     
 
-@login_required(login_url='/authentication/login')
+@login_required(login_url='/authentication/login') 
 def index(request):
     categories = Category.objects.all()
     expense = Expense.objects.filter(owner=request.user)
@@ -109,6 +109,9 @@ def edit_expense(request, id):
         if not description:
             messages.error(request, 'Description is required')
             return render(request, 'expenses/edit_expense.html', context)
+        if not date:
+            messages.error(request, 'Date is required')
+            return render(request, 'expenses/add_expense.html', context)
 
         expense.amount = amount
         expense.date = date
