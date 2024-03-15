@@ -6,13 +6,12 @@ const tableBody = document.querySelector(".table-body");
 
 tableOutput.style.display = "none";
 
-
 searchField.addEventListener("keyup", (e) => {
     const searchValue = e.target.value.trim();
 
     if (searchValue.length > 0) {
         paginationContainer.style.display = "none";
-        fetch("search-expenses/", {
+        fetch("search-income/", {
             body: JSON.stringify({ searchText: searchValue }),
             method: "POST",
             headers: {
@@ -35,11 +34,11 @@ searchField.addEventListener("keyup", (e) => {
                         <tr>
                             <td>${item.amount}</td>
                             <td>${item.date}</td>
-                            <td>${item.category}</td>
+                            <td>${item.source}</td>
                             <td>${item.description}</td>
                             <td>
-                                <a href="{% url 'edit-expense' expense.id %}" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="{% url 'delete-expense' expense.id   %}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="{% url 'edit-income' income.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{% url 'delete-income' income.id   %}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     `;
