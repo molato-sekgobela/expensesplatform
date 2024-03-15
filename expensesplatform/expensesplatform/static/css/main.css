@@ -77,3 +77,7 @@
 .showPasswordToggleBtn{
   cursor: pointer;
 }
+.chart-canvas {
+  width: 200px !important; /* Set the desired width */
+  height: 200px !important; /* Set the desired height */
+}
