@@ -14,6 +14,36 @@ from pathlib import Path
 import os
 from django.contrib import messages
 from .credentials import EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS, DEFAULT_FROM_EMAIL, EMAIL_PORT
+# settings.py
+
+# Add 'text/css' to the MIME types
+from django.utils.text import format_lazy
+from django.utils.translation import gettext_lazy as _
+
+# Add 'text/css' to the default MIME types
+_format_lazy = lambda x: format_lazy(_(x))
+_DEFAULT_CONTENT_TYPES = {
+    "ai": _format_lazy("Adobe Illustrator"),
+    "gif": _format_lazy("Graphics Interchange Format"),
+    "ico": _format_lazy("ICO"),
+    "jpg": _format_lazy("JPEG"),
+    "jpeg": _format_lazy("JPEG"),
+    "json": _format_lazy("JSON"),
+    "png": _format_lazy("Portable Network Graphics"),
+    "svg": _format_lazy("Scalable Vector Graphics"),
+    "webp": _format_lazy("WEBP"),
+    "css": _format_lazy("Cascading Style Sheets (CSS)"),
+    "js": _format_lazy("JavaScript"),
+    "eot": _format_lazy("Embedded OpenType"),
+    "otf": _format_lazy("TrueType"),
+    "ttf": _format_lazy("TrueType"),
+    "woff": _format_lazy("Web Open Font Format (WOFF)"),
+    "woff2": _format_lazy("Web Open Font Format (WOFF)"),
+}
+
+# Override the default MIME types with the extended list
+EXTENSIONS.update(_DEFAULT_CONTENT_TYPES)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +58,7 @@ SECRET_KEY = 'django-insecure-3sg30t)fl2qm9gt6i!^gj1u+i_rd#wx^2u&327n=1@f6or*rtx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['expenses.techwithmolato.co.za','*']
 
 
 # Application definition
